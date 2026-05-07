@@ -8,7 +8,11 @@ cSoPhuc::cSoPhuc(double t, double a)
 	ao = a;
 }
 
-cSoPhuc::cSoPhuc(){}
+cSoPhuc::cSoPhuc()
+{
+	thuc = 0;
+	ao = 0;
+}
 
 istream& operator>>(istream& in, cSoPhuc& sp)
 {
