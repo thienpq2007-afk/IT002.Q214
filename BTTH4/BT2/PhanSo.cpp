@@ -1,5 +1,8 @@
 #include "PhanSo.h"
 
+// Hàm tìm ước chung lớn nhất của hai số nguyên
+// Input: a, b
+// Output: UCLN của a và b
 int UCLN(int a, int b)
 {
     a = abs(a);
@@ -15,6 +18,9 @@ int UCLN(int a, int b)
     return a;
 }
 
+// Rút gọn phân số về tối giản
+// Input: tử số và mẫu số hiện tại
+// Output: phân số đã được rút gọn
 void PhanSo::RutGon()
 {
     int ucln = UCLN(tu, mau);
@@ -29,6 +35,9 @@ void PhanSo::RutGon()
     }
 }
 
+// Constructor khởi tạo phân số
+// Input: tử số t, mẫu số m
+// Output: tạo phân số tối giản
 PhanSo::PhanSo(int t, int m)
 {
     tu = t;
@@ -42,16 +51,23 @@ PhanSo::PhanSo(int t, int m)
     RutGon();
 }
 
+// Lấy tử số
+// Output: giá trị tử số
 int PhanSo::getTu() const
 {
     return tu;
 }
 
+// Lấy mẫu số
+// Output: giá trị mẫu số
 int PhanSo::getMau() const
 {
     return mau;
 }
 
+// Cộng hai phân số
+// Input: phân số ps
+// Output: tổng hai phân số
 PhanSo PhanSo::operator+(const PhanSo& ps)
 {
     return PhanSo(
@@ -60,6 +76,9 @@ PhanSo PhanSo::operator+(const PhanSo& ps)
     );
 }
 
+// Trừ hai phân số
+// Input: phân số ps
+// Output: hiệu hai phân số
 PhanSo PhanSo::operator-(const PhanSo& ps)
 {
     return PhanSo(
@@ -68,6 +87,9 @@ PhanSo PhanSo::operator-(const PhanSo& ps)
     );
 }
 
+// Nhân hai phân số
+// Input: phân số ps
+// Output: tích hai phân số
 PhanSo PhanSo::operator*(const PhanSo& ps)
 {
     return PhanSo(
@@ -76,6 +98,9 @@ PhanSo PhanSo::operator*(const PhanSo& ps)
     );
 }
 
+// Chia hai phân số
+// Input: phân số ps
+// Output: thương hai phân số
 PhanSo PhanSo::operator/(const PhanSo& ps)
 {
     return PhanSo(
@@ -84,21 +109,30 @@ PhanSo PhanSo::operator/(const PhanSo& ps)
     );
 }
 
+// So sánh bằng
+// Output: true nếu hai phân số bằng nhau
 bool PhanSo::operator==(PhanSo& ps)
 {
     return tu * ps.mau == ps.tu * mau;
 }
 
+// So sánh lớn hơn
+// Output: true nếu phân số hiện tại lớn hơn ps
 bool PhanSo::operator>(PhanSo& ps)
 {
     return tu * ps.mau > ps.tu * mau;
 }
 
+// So sánh nhỏ hơn
+// Output: true nếu phân số hiện tại nhỏ hơn ps
 bool PhanSo::operator<(PhanSo& ps)
 {
     return tu * ps.mau < ps.tu * mau;
 }
 
+// Nhập phân số
+// Input: tử số và mẫu số từ bàn phím
+// Output: cập nhật giá trị phân số
 istream& operator>>(istream& in, PhanSo& ps)
 {
     cout << "Nhap tu so: ";
@@ -118,6 +152,9 @@ istream& operator>>(istream& in, PhanSo& ps)
     return in;
 }
 
+// Xuất phân số
+// Input: đối tượng phân số
+// Output: hiển thị phân số ra màn hình
 ostream& operator<<(ostream& out, const PhanSo& ps)
 {
     if (ps.getMau() == 1)
