@@ -2,6 +2,9 @@
 #include<cmath>
 #include<iomanip>
 
+// Constructor khởi tạo đa thức
+// Input: b (bậc của đa thức)
+// Output: tạo đa thức có bậc b với các hệ số bằng 0
 DaThuc::DaThuc(int b)
 {
     if (b < 0)
@@ -14,6 +17,9 @@ DaThuc::DaThuc(int b)
     }
 }
 
+// Constructor sao chép
+// Input: đa thức dt
+// Output: tạo bản sao của đa thức dt
 DaThuc::DaThuc(const DaThuc& dt)
 {
     bac = dt.bac;
@@ -24,11 +30,17 @@ DaThuc::DaThuc(const DaThuc& dt)
     }
 }
 
+// Destructor
+// Input: không có
+// Output: giải phóng vùng nhớ động
 DaThuc::~DaThuc()
 {
     delete[] heSo;
 }
 
+// Toán tử gán
+// Input: đa thức dt
+// Output: gán giá trị của dt cho đối tượng hiện tại
 DaThuc& DaThuc::operator=(const DaThuc& dt)
 {
     if (this != &dt)
@@ -44,6 +56,9 @@ DaThuc& DaThuc::operator=(const DaThuc& dt)
     return *this;
 }
 
+// Tối ưu bậc đa thức
+// Input: đa thức hiện tại
+// Output: loại bỏ các hệ số 0 ở bậc cao nhất
 void DaThuc::ToiUu()
 {
     while (bac > 0 && heSo[bac] == 0)
@@ -52,6 +67,9 @@ void DaThuc::ToiUu()
     }
 }
 
+// Cộng hai đa thức
+// Input: đa thức dt
+// Output: đa thức tổng
 DaThuc DaThuc::operator+(const DaThuc& dt) const
 {
     int maxBac = (bac > dt.bac) ? bac : dt.bac;
@@ -66,6 +84,9 @@ DaThuc DaThuc::operator+(const DaThuc& dt) const
     return kq;
 }
 
+// Trừ hai đa thức
+// Input: đa thức dt
+// Output: đa thức hiệu
 DaThuc DaThuc::operator-(const DaThuc& dt) const
 {
     int maxBac = (bac > dt.bac) ? bac : dt.bac;
@@ -80,6 +101,9 @@ DaThuc DaThuc::operator-(const DaThuc& dt) const
     return kq;
 }
 
+// Nhân hai đa thức
+// Input: đa thức dt
+// Output: đa thức tích
 DaThuc DaThuc::operator*(const DaThuc& dt) const
 {
     DaThuc kq(bac + dt.bac);
@@ -94,6 +118,9 @@ DaThuc DaThuc::operator*(const DaThuc& dt) const
     return kq;
 }
 
+// Tính giá trị đa thức tại x
+// Input: giá trị x
+// Output: giá trị của đa thức tại x
 double DaThuc::GiaTri(double x) const
 {
     double tong = 0;
@@ -104,6 +131,9 @@ double DaThuc::GiaTri(double x) const
     return tong;
 }
 
+// Nhập đa thức
+// Input: bậc đa thức và các hệ số
+// Output: cập nhật đa thức
 istream& operator>>(istream& in, DaThuc& dt)
 {
     cout << "Nhap bac da thuc: ";
@@ -121,6 +151,9 @@ istream& operator>>(istream& in, DaThuc& dt)
     return in;
 }
 
+// Xuất đa thức
+// Input: đối tượng đa thức
+// Output: biểu diễn đa thức ra màn hình
 ostream& operator<<(ostream& out, const DaThuc& dt)
 {
     bool first = true;
