@@ -1,10 +1,16 @@
 #include "cDate.h"
 
+// Kiểm tra năm nhuận
+// Input: năm y
+// Output: true nếu là năm nhuận, false nếu không
 bool cDate::NamNhuan(int y) 
 {
     return (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0);
 }
 
+// Trả về số ngày của một tháng trong năm
+// Input: tháng m, năm y
+// Output: số ngày tương ứng của tháng
 int cDate::SoNgayTrongThang(int m, int y) 
 {
     int ngayThang[] =
@@ -18,6 +24,9 @@ int cDate::SoNgayTrongThang(int m, int y)
     return ngayThang[m - 1];
 }
 
+// Constructor khởi tạo ngày tháng năm
+// Input: ngày d, tháng m, năm y
+// Output: tạo đối tượng ngày tháng năm
 cDate::cDate(int d, int m, int y)
 {
     ngay = d;
@@ -25,6 +34,9 @@ cDate::cDate(int d, int m, int y)
     nam = y;
 }
 
+// Cộng thêm n ngày
+// Input: n (số ngày cần cộng)
+// Output: ngày mới sau khi cộng
 cDate cDate::operator+(int n) const
 {
     cDate temp = *this;
@@ -47,6 +59,9 @@ cDate cDate::operator+(int n) const
     return temp;
 }
 
+// Trừ đi n ngày
+// Input: n (số ngày cần trừ)
+// Output: ngày mới sau khi trừ
 cDate cDate::operator-(int n) const
 {
     cDate temp = *this;
@@ -69,6 +84,9 @@ cDate cDate::operator-(int n) const
     return temp;
 }
 
+// Tính khoảng cách giữa hai ngày
+// Input: ngày hiện tại và ngày other
+// Output: số ngày chênh lệch giữa hai ngày
 int cDate::operator-(const cDate& other) const
 {
     cDate temp = other;
@@ -83,12 +101,18 @@ int cDate::operator-(const cDate& other) const
     return dem;
 }
 
+// Tiền tố ++
+// Input: không có
+// Output: tăng ngày hiện tại lên 1 ngày
 cDate& cDate::operator++()
 {
     *this = *this + 1;
     return *this;
 }
 
+// Hậu tố ++
+// Input: không có
+// Output: trả về ngày cũ, sau đó tăng thêm 1 ngày
 cDate cDate::operator++(int)
 {
     cDate temp = *this;
@@ -96,12 +120,18 @@ cDate cDate::operator++(int)
     return temp;
 }
 
+// Tiền tố --
+// Input: không có
+// Output: giảm ngày hiện tại đi 1 ngày
 cDate& cDate::operator--()
 {
     *this = *this - 1;
     return *this;
 }
 
+// Hậu tố --
+// Input: không có
+// Output: trả về ngày cũ, sau đó giảm đi 1 ngày
 cDate cDate::operator--(int)
 {
     cDate temp = *this;
@@ -109,6 +139,9 @@ cDate cDate::operator--(int)
     return temp;
 }
 
+// Nhập ngày tháng năm
+// Input: ngày, tháng, năm từ bàn phím
+// Output: cập nhật đối tượng ngày tháng năm
 istream& operator>>(istream& in, cDate& d)
 {
     cout << "Nhap ngay: ";
@@ -120,6 +153,9 @@ istream& operator>>(istream& in, cDate& d)
     return in;
 }
 
+// Xuất ngày tháng năm theo định dạng dd/mm/yyyy
+// Input: đối tượng ngày tháng năm
+// Output: hiển thị ngày tháng năm ra màn hình
 ostream& operator<<(ostream& out, const cDate& d)
 {
     if (d.ngay < 10)
