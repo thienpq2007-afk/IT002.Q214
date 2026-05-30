@@ -1,6 +1,9 @@
 #include "cMatrix.h"
 #include<iomanip>
 
+// Cấp phát bộ nhớ cho ma trận
+// Input: số dòng r, số cột c
+// Output: tạo ma trận r x c với các phần tử bằng 0
 void cMatrix::CapPhat(int r, int c)
 {
     dong = r;
@@ -19,6 +22,9 @@ void cMatrix::CapPhat(int r, int c)
     }
 }
 
+// Giải phóng bộ nhớ ma trận
+// Input: ma trận hiện tại
+// Output: thu hồi vùng nhớ đã cấp phát
 void cMatrix::GiaiPhong()
 {
     if (a != nullptr)
@@ -34,6 +40,9 @@ void cMatrix::GiaiPhong()
     a = nullptr;
 }
 
+// Constructor khởi tạo ma trận
+// Input: số dòng r, số cột c
+// Output: tạo ma trận r x c
 cMatrix::cMatrix(int r, int c)
 {
     a = nullptr;
@@ -47,6 +56,9 @@ cMatrix::cMatrix(int r, int c)
     CapPhat(r, c);
 }
 
+// Constructor sao chép
+// Input: ma trận m
+// Output: tạo bản sao của ma trận m
 cMatrix::cMatrix(const cMatrix& m)
 {
     dong = m.dong;
@@ -62,11 +74,17 @@ cMatrix::cMatrix(const cMatrix& m)
     }
 }
 
+// Destructor
+// Input: không có
+// Output: giải phóng bộ nhớ động
 cMatrix::~cMatrix()
 {
     GiaiPhong();
 }
 
+// Toán tử gán
+// Input: ma trận m
+// Output: gán giá trị ma trận m cho ma trận hiện tại
 cMatrix& cMatrix::operator=(const cMatrix& m)
 {
     if (this != &m)
@@ -87,6 +105,10 @@ cMatrix& cMatrix::operator=(const cMatrix& m)
     return *this;
 }
 
+// Cộng hai ma trận
+// Input: ma trận m
+// Output: ma trận tổng
+// Thuật giải: cộng từng phần tử cùng vị trí
 cMatrix cMatrix::operator+(const cMatrix& m) const
 {
     if (dong != m.dong || cot != m.cot)
@@ -105,6 +127,10 @@ cMatrix cMatrix::operator+(const cMatrix& m) const
     return kq;
 }
 
+// Trừ hai ma trận
+// Input: ma trận m
+// Output: ma trận hiệu
+// Thuật giải: trừ từng phần tử cùng vị trí
 cMatrix cMatrix::operator-(const cMatrix& m) const
 {
     if (dong != m.dong || cot != m.cot)
@@ -123,6 +149,12 @@ cMatrix cMatrix::operator-(const cMatrix& m) const
     return kq;
 }
 
+// Nhân hai ma trận
+// Input: ma trận m
+// Output: ma trận tích
+// Thuật giải:
+// Mỗi phần tử kết quả bằng tổng tích
+// các phần tử hàng i và cột j
 cMatrix cMatrix::operator*(const cMatrix& m) const
 {
     if (cot != m.dong)
@@ -144,6 +176,11 @@ cMatrix cMatrix::operator*(const cMatrix& m) const
     return kq;
 }
 
+// Nhân ma trận với vector
+// Input: mảng v gồm n phần tử
+// Output: vector kết quả sau phép nhân
+// Thuật giải:
+// Lấy tích vô hướng từng hàng của ma trận với vector
 double* cMatrix::NhanVector(double* v, int n) const
 {
     if (cot != n)
@@ -164,6 +201,9 @@ double* cMatrix::NhanVector(double* v, int n) const
     return kq;
 }
 
+// Nhập ma trận
+// Input: số dòng, số cột và các phần tử
+// Output: cập nhật ma trận
 istream& operator>>(istream& in, cMatrix& m)
 {
     int r, c;
@@ -190,6 +230,9 @@ istream& operator>>(istream& in, cMatrix& m)
     return in;
 }
 
+// Xuất ma trận
+// Input: đối tượng ma trận
+// Output: hiển thị ma trận ra màn hình
 ostream& operator<<(ostream& out, const cMatrix& m)
 {
     for (int i = 0; i < m.dong; i++)
