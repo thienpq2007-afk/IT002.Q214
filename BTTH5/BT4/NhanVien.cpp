@@ -1,5 +1,9 @@
 #include "NhanVien.h"
 
+// Nhập thông tin nhân viên
+// Input: mã nhân viên, họ tên, tuổi,
+// số điện thoại, email, lương cơ bản
+// Output: cập nhật thông tin nhân viên
 void NhanVien::Nhap()
 {
     cin.ignore();
@@ -18,6 +22,12 @@ void NhanVien::Nhap()
     cin >> luongCoBan;
 }
 
+// Xuất thông tin nhân viên
+// Input: thông tin nhân viên hiện tại
+// Output: hiển thị thông tin nhân viên và lương
+// Thuật giải:
+// Gọi hàm TinhLuong() để lấy lương thực tế
+// của đối tượng hiện tại (đa hình)
 void NhanVien::Xuat()
 {
     cout << "Ma NV: " << maNV << endl;
