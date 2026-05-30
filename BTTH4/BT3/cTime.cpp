@@ -1,5 +1,8 @@
 #include "cTime.h"
 
+// Chuẩn hóa thời gian về dạng hợp lệ HH:MM:SS
+// Input: giờ, phút, giây hiện tại
+// Output: thời gian sau khi chuẩn hóa
 void cTime::ChuanHoa()
 {
     int tongGiay = gio * 3600 + phut * 60 + giay;
@@ -12,6 +15,9 @@ void cTime::ChuanHoa()
     giay = tongGiay % 60;
 }
 
+// Constructor khởi tạo thời gian
+// Input: giờ h, phút p, giây s
+// Output: tạo đối tượng thời gian hợp lệ
 cTime::cTime(int h, int p, int s)
 {
     gio = h;
@@ -21,6 +27,9 @@ cTime::cTime(int h, int p, int s)
     ChuanHoa();
 }
 
+// Cộng thêm số giây vào thời gian
+// Input: s (số giây cần cộng)
+// Output: thời gian mới sau khi cộng
 cTime cTime::operator+(int s) const
 {
     cTime temp(gio, phut, giay);
@@ -31,6 +40,9 @@ cTime cTime::operator+(int s) const
     return temp;
 }
 
+// Trừ đi số giây khỏi thời gian
+// Input: s (số giây cần trừ)
+// Output: thời gian mới sau khi trừ
 cTime cTime::operator-(int s) const
 {
     cTime temp(gio, phut, giay);
@@ -41,6 +53,9 @@ cTime cTime::operator-(int s) const
     return temp;
 }
 
+// Tiền tố ++
+// Input: không có
+// Output: tăng thời gian thêm 1 giây
 cTime& cTime::operator++()
 {
     giay++;
@@ -49,6 +64,9 @@ cTime& cTime::operator++()
     return *this;
 }
 
+// Hậu tố ++
+// Input: không có
+// Output: trả về giá trị cũ, sau đó tăng 1 giây
 cTime cTime::operator++(int)
 {
     cTime temp = *this;
@@ -59,6 +77,9 @@ cTime cTime::operator++(int)
     return temp;
 }
 
+// Tiền tố --
+// Input: không có
+// Output: giảm thời gian đi 1 giây
 cTime& cTime::operator--()
 {
     giay--;
@@ -67,6 +88,9 @@ cTime& cTime::operator--()
     return *this;
 }
 
+// Hậu tố --
+// Input: không có
+// Output: trả về giá trị cũ, sau đó giảm 1 giây
 cTime cTime::operator--(int)
 {
     cTime temp = *this;
@@ -77,6 +101,9 @@ cTime cTime::operator--(int)
     return temp;
 }
 
+// Nhập thời gian
+// Input: giờ, phút, giây từ bàn phím
+// Output: cập nhật đối tượng thời gian
 istream& operator>>(istream& in, cTime& t)
 {
     cout << "Nhap gio: ";
@@ -93,6 +120,9 @@ istream& operator>>(istream& in, cTime& t)
     return in;
 }
 
+// Xuất thời gian theo định dạng HH:MM:SS
+// Input: đối tượng thời gian
+// Output: hiển thị thời gian ra màn hình
 ostream& operator<<(ostream& out, const cTime& t)
 {
     if (t.gio < 10)
