@@ -1,5 +1,9 @@
 #include "GiaoDichCanHo.h"
 
+// Nhập thông tin giao dịch căn hộ
+// Input: thông tin giao dịch chung,
+// mã căn và vị trí tầng
+// Output: cập nhật thông tin giao dịch căn hộ
 void GiaoDichCanHo::Nhap()
 {
     GiaoDich::Nhap();
@@ -11,6 +15,13 @@ void GiaoDichCanHo::Nhap()
     TinhThanhTien();
 }
 
+// Tính thành tiền giao dịch căn hộ
+// Input: diện tích, đơn giá, vị trí tầng
+// Output: giá trị thành tiền
+// Thuật giải:
+// - Tầng 1: thành tiền = diện tích × đơn giá × 2
+// - Tầng từ 15 trở lên: thành tiền = diện tích × đơn giá × 1.2
+// - Các tầng còn lại: thành tiền = diện tích × đơn giá
 void GiaoDichCanHo::TinhThanhTien()
 {
     if (viTriTang == 1)
@@ -21,6 +32,9 @@ void GiaoDichCanHo::TinhThanhTien()
         thanhTien = dienTich * donGia;
 }
 
+// Xuất thông tin giao dịch căn hộ
+// Input: thông tin giao dịch căn hộ
+// Output: hiển thị thông tin ra màn hình
 void GiaoDichCanHo::Xuat()
 {
     cout << "\n===== GIAO DICH CAN HO =====\n";
