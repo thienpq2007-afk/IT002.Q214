@@ -2,6 +2,9 @@
 #include<cmath>
 #include<iomanip>
 
+// Constructor khởi tạo vector
+// Input: size (số chiều của vector)
+// Output: tạo vector có size phần tử, giá trị ban đầu bằng 0
 cVector::cVector(int size)
 {
     if (size < 0)
@@ -14,6 +17,9 @@ cVector::cVector(int size)
     }
 }
 
+// Constructor sao chép
+// Input: vector v
+// Output: tạo bản sao của vector v
 cVector::cVector(const cVector& v)
 {
     n = v.n;
@@ -24,11 +30,17 @@ cVector::cVector(const cVector& v)
     }
 }
 
+// Destructor
+// Input: không có
+// Output: giải phóng vùng nhớ động
 cVector::~cVector()
 {
     delete[] data;
 }
 
+// Toán tử gán
+// Input: vector v
+// Output: gán giá trị của v cho vector hiện tại
 cVector& cVector::operator=(const cVector& v)
 {
     if (this != &v)
@@ -44,6 +56,10 @@ cVector& cVector::operator=(const cVector& v)
     return *this;
 }
 
+// Cộng hai vector
+// Input: vector v
+// Output: vector tổng
+// Thuật giải: cộng từng phần tử tương ứng
 cVector cVector::operator+(const cVector& v) const
 {
     if (n != v.n)
@@ -59,6 +75,10 @@ cVector cVector::operator+(const cVector& v) const
     return kq;
 }
 
+// Trừ hai vector
+// Input: vector v
+// Output: vector hiệu
+// Thuật giải: trừ từng phần tử tương ứng
 cVector cVector::operator-(const cVector& v) const
 {
     if (n != v.n)
@@ -74,6 +94,10 @@ cVector cVector::operator-(const cVector& v) const
     return kq;
 }
 
+// Nhân vector với một số thực
+// Input: số thực k
+// Output: vector mới sau khi nhân
+// Thuật giải: nhân từng phần tử với k
 cVector cVector::operator*(double k) const
 {
     cVector kq(n);
@@ -84,6 +108,10 @@ cVector cVector::operator*(double k) const
     return kq;
 }
 
+// Tích vô hướng hai vector
+// Input: vector v
+// Output: giá trị tích vô hướng
+// Thuật giải: nhân các phần tử tương ứng rồi cộng lại
 double cVector::operator*(const cVector& v) const
 {
     if (n != v.n)
@@ -99,6 +127,10 @@ double cVector::operator*(const cVector& v) const
     return tong;
 }
 
+// Tính độ dài vector
+// Input: vector hiện tại
+// Output: độ dài vector
+// Thuật giải: căn bậc hai của tổng bình phương các phần tử
 double cVector::DoDai() const
 {
     double tong = 0;
@@ -109,6 +141,9 @@ double cVector::DoDai() const
     return sqrt(tong);
 }
 
+// Nhập vector
+// Input: số chiều và các phần tử từ bàn phím
+// Output: cập nhật giá trị vector
 istream& operator>>(istream& in, cVector& v)
 {
     cout << "Nhap so chieu: ";
@@ -125,6 +160,9 @@ istream& operator>>(istream& in, cVector& v)
     return in;
 }
 
+// Xuất vector
+// Input: đối tượng vector
+// Output: hiển thị vector dạng (x1, x2, ..., xn)
 ostream& operator<<(ostream& out, const cVector& v)
 {
     out << "(";
