@@ -1,10 +1,17 @@
 #include "SinhVien.h"
 
+// Destructor
+// Input: không có
+// Output: hủy đối tượng sinh viên
 SinhVien::~SinhVien()
 {
 
 }
 
+// Nhập thông tin sinh viên
+// Input: MSSV, họ tên, địa chỉ,
+// tổng tín chỉ, điểm trung bình
+// Output: cập nhật thông tin sinh viên
 void SinhVien::Nhap()
 {
     cin.ignore();
@@ -20,6 +27,9 @@ void SinhVien::Nhap()
     cin >> diemTB;
 }
 
+// Xuất thông tin sinh viên
+// Input: thông tin sinh viên hiện tại
+// Output: hiển thị thông tin sinh viên ra màn hình
 void SinhVien::Xuat()
 {
     cout << "MSSV: " << mssv << endl;
@@ -29,6 +39,9 @@ void SinhVien::Xuat()
     cout << "Diem trung binh: " << diemTB << endl;
 }
 
+// Lấy điểm trung bình
+// Input: không có
+// Output: giá trị điểm trung bình của sinh viên
 double SinhVien::GetDiemTB()
 {
     return diemTB;
