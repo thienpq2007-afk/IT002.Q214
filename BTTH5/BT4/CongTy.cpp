@@ -1,5 +1,8 @@
 #include "CongTy.h"
 
+// Destructor
+// Input: không có
+// Output: giải phóng bộ nhớ của danh sách nhân viên
 CongTy::~CongTy()
 {
     for (int i = 0; i < ds.size(); i++)
@@ -8,6 +11,9 @@ CongTy::~CongTy()
     }
 }
 
+// Nhập danh sách nhân viên
+// Input: số lượng nhân viên và thông tin từng nhân viên
+// Output: cập nhật danh sách nhân viên của công ty
 void CongTy::NhapDanhSach()
 {
     int n;
@@ -34,6 +40,9 @@ void CongTy::NhapDanhSach()
     }
 }
 
+// Xuất danh sách nhân viên
+// Input: danh sách nhân viên
+// Output: hiển thị toàn bộ nhân viên
 void CongTy::XuatDanhSach()
 {
     for (int i = 0; i < ds.size(); i++)
@@ -43,6 +52,12 @@ void CongTy::XuatDanhSach()
     }
 }
 
+// Tính lương trung bình của công ty
+// Input: danh sách nhân viên
+// Output: lương trung bình
+// Thuật giải:
+// Cộng tổng lương của tất cả nhân viên
+// rồi chia cho số lượng nhân viên
 double CongTy::LuongTrungBinh()
 {
     double tong = 0;
@@ -53,6 +68,9 @@ double CongTy::LuongTrungBinh()
     return tong / ds.size();
 }
 
+// Liệt kê nhân viên có lương thấp hơn trung bình
+// Input: danh sách nhân viên
+// Output: danh sách nhân viên có lương < lương trung bình
 void CongTy::NVLuongThapHonTB()
 {
     double tb = LuongTrungBinh();
@@ -67,6 +85,11 @@ void CongTy::NVLuongThapHonTB()
     }
 }
 
+// Tìm nhân viên có lương cao nhất
+// Input: danh sách nhân viên
+// Output: thông tin nhân viên lương cao nhất
+// Thuật giải:
+// Duyệt danh sách và lưu vị trí có lương lớn nhất
 void CongTy::NVLuongCaoNhat()
 {
     int vt = 0;
@@ -81,6 +104,11 @@ void CongTy::NVLuongCaoNhat()
     ds[vt]->Xuat();
 }
 
+// Tìm nhân viên có lương thấp nhất
+// Input: danh sách nhân viên
+// Output: thông tin nhân viên lương thấp nhất
+// Thuật giải:
+// Duyệt danh sách và lưu vị trí có lương nhỏ nhất
 void CongTy::NVLuongThapNhat()
 {
     int vt = 0;
@@ -95,6 +123,12 @@ void CongTy::NVLuongThapNhat()
     ds[vt]->Xuat();
 }
 
+// Tìm lập trình viên có lương cao nhất
+// Input: danh sách nhân viên
+// Output: thông tin lập trình viên lương cao nhất
+// Thuật giải:
+// Dùng dynamic_cast để lọc các đối tượng LapTrinhVien,
+// sau đó tìm người có lương lớn nhất
 void CongTy::LTVLuongCaoNhat()
 {
     LapTrinhVien* max = NULL;
@@ -116,6 +150,12 @@ void CongTy::LTVLuongCaoNhat()
     }
 }
 
+// Tìm kiểm chứng viên có lương thấp nhất
+// Input: danh sách nhân viên
+// Output: thông tin kiểm chứng viên lương thấp nhất
+// Thuật giải:
+// Dùng dynamic_cast để lọc các đối tượng KiemChungVien,
+// sau đó tìm người có lương nhỏ nhất
 void CongTy::KCVLuongThapNhat()
 {
     KiemChungVien* min = NULL;
